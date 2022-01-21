@@ -1,0 +1,20 @@
+body {
+    background-color: #FEE1C7;
+}
+
+.jumbotron {
+    background-color: #B5A886
+}
+
+aside {
+    width: 300px;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.search-Btn {
+    background-color: #FA7E61;
+    width: 200px;
+    border-radius: 5px; 
+    margin-top: 10px;
+}
