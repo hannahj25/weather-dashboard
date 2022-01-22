@@ -31,8 +31,13 @@ aside {
     display: inline;
     margin: 10px;
     border-radius: 5px;
+    width: 100%;
 }
 
 .display-city {
     width: fit-content;
+}
+
+.temps {
+    font-weight: bold;
 }
