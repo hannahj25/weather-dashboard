@@ -8,6 +8,7 @@ var forecastDiv = document.querySelector(".forecast");
 var searchBtn = document.querySelector(".search-Btn");
 var userCity = document.querySelector(".city-search");
 var forecastHeader = document.querySelector(".forecast-header");
+var searchHistory = document.querySelector(".search-history");
 
 // Create & style new elements to be used in displaying fetched weather info
 var cityName = document.createElement("h2");
@@ -52,11 +53,17 @@ searchBtn.addEventListener("click", function (event) {
     if (search === "") {
         window.alert("Please enter a city name.")
         return
+        
     }
 
     // User input passed to getCity function to get data of corresponding city
+    $(".forecast").empty();
     getCity(search).then(function (weather) {
         console.log(weather);
+        var historyItem = document.createElement("button");
+        historyItem.classList.add("btn", "btn-dark");
+        historyItem.textContent = userCity.value;
+        searchHistory.appendChild(historyItem);
         //Display data
         cityName.textContent = weather.name + " - " + today.format("DD/MM/YY");
         icon.src = "http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png";
@@ -81,6 +88,7 @@ searchBtn.addEventListener("click", function (event) {
         maxMin.textContent = "Max: " + forecastData.daily[0].temp.max + "°C / Min: " + forecastData.daily[0].temp.min + "°C";
         // Loop through 'daily' weather data from one call api to make 5 day forecast cards
         for (var i = 1; i < 6; i++) {
+            
             // Create & style card elements
             var forecastCard = document.createElement("div");
             forecastCard.classList.add("col", "forecast-card");
