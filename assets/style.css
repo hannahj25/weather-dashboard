@@ -8,8 +8,9 @@ body {
 
 aside {
     width: 300px;
+    float: left;
     margin-left: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 .search-Btn {
@@ -18,3 +19,9 @@ aside {
     border-radius: 5px; 
     margin-top: 10px;
 }
+
+.content {
+    display: inline-block;
+    margin-left: 100px;
+}
+

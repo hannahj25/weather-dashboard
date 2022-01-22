@@ -1,25 +1,32 @@
 var apiKey = "f57081fe0af437b3810f6e16f828ba1c";
-var userCity = document.querySelector(".city-search");
+var today = moment();
+
 
 
 // Select elements from html and assign to variables
 var city = document.querySelector(".display-city");
 var forecastDiv = document.querySelector(".forecast");
 var searchBtn = document.querySelector(".search-Btn");
+var userCity = document.querySelector(".city-search");
 
 // Create new elements to be used in displaying fetched weather info
 
 var cityName = document.createElement("h2");
 var temp = document.createElement("p");
+var maxMin = document.createElement ("p");
 var wind = document.createElement("p");
 var humidity = document.createElement("p");
 var uvIndex = document.createElement("p");
+var icon = document.createElement("p");
 // append new elements to document
 city.appendChild(cityName);
+city.appendChild(icon);
 city.appendChild(temp);
+city.appendChild(maxMin);
 city.appendChild(wind);
 city.appendChild(humidity);
 city.appendChild(uvIndex);
+
 
 function getCity (city) {
     var currentWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + apiKey;
@@ -47,8 +54,8 @@ searchBtn.addEventListener("click", function (event) {
     // pass to getcity function 
     getCity(search).then(function (weather) {
         console.log(weather);
-        cityName.textContent = weather.name;
-        temp.textContent = "Temperature: " + weather.main.temp
+        cityName.textContent = weather.name + " - " + today.format("DD/MM/YY");
+        temp.textContent = "Current temperature: " + weather.main.temp + "°C"
         wind.textContent = "Wind: " + weather.wind.speed + " KPH";
         humidity.textContent = "Humidity: " + weather.main.humidity + "%";
 
