@@ -25,3 +25,14 @@ aside {
     margin-left: 100px;
 }
 
+
+.forecast-card {
+    background-color: #B5A886;
+    display: inline;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.display-city {
+    width: fit-content;
+}
