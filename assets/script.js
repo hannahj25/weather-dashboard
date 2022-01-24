@@ -45,6 +45,27 @@ function forecast(long, lat) {
         .then(response => response.json());
 }
 
+// Saving cityName into array of strings
+function saveSearch (cityName) {
+    var searchItems = JSON.parse(localStorage.getItem("searchItems")) || [];
+    searchItems.push(cityName);
+    localStorage.setItem("searchItems", JSON.stringify(searchItems));
+}
+
+function populateHistory () {
+    var searchItems = JSON.parse(localStorage.getItem("searchItems")) || [];
+    for (const element of searchItems) {
+        createHistoryButton(element);
+      }
+}
+
+function createHistoryButton (cityName) {
+    var historyItem = document.createElement("button");
+    historyItem.classList.add("btn", "btn-dark");
+    historyItem.textContent = cityName;
+    searchHistory.appendChild(historyItem);
+}
+
 // Display current weather and forecast for inputted city on click 'search'
 searchBtn.addEventListener("click", function (event) {
     event.preventDefault();
@@ -60,16 +81,15 @@ searchBtn.addEventListener("click", function (event) {
     $(".forecast").empty();
     getCity(search).then(function (weather) {
         console.log(weather);
-        var historyItem = document.createElement("button");
-        historyItem.classList.add("btn", "btn-dark");
-        historyItem.textContent = userCity.value;
-        searchHistory.appendChild(historyItem);
+        createHistoryButton (weather.name);
+        saveSearch (weather.name);
         //Display data
         cityName.textContent = weather.name + " - " + today.format("DD/MM/YY");
         icon.src = "http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png";
         temp.textContent = "Currently: " + weather.main.temp + "°C";
         wind.textContent = "Wind: " + weather.wind.speed + " m/s";
         humidity.textContent = "Humidity: " + weather.main.humidity + "%";
+        
 
         // Pass in city coordinates (obtained from current weather api fetch) then display forecast weather data
         return forecast(weather.coord.lon, weather.coord.lat)
@@ -128,3 +148,4 @@ searchBtn.addEventListener("click", function (event) {
 
 })
 
+populateHistory ();
