@@ -76,8 +76,6 @@ function createHistoryButton (cityName) {
 }
 
 function fetchForecast (search, createBtn) {
-    
-
     // User input passed to getCity function to get data of corresponding city
     $(".forecast").empty();
 

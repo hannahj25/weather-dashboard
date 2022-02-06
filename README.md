@@ -11,7 +11,9 @@ User is able to search for a city and see current weather details, plus a five d
 ## Built with
 
 Bootstrap
+
 Jquery
+
 Moment.js
 
 ## Screenshots
